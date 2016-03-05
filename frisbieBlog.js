@@ -20,6 +20,14 @@ if (Meteor.isClient) {
   // reset field values
   $('[name="postTitle"]').val('');
   $('[name="postBody"]').val('');
+
+  Template.postItem.events({
+    'click .delete-post': function(event) {
+      event.preventDefault();
+      var documentId = this._id;
+      Posts.remove({_id: documentId});
+    }
+  })
 }
 
 if (Meteor.isServer) {
