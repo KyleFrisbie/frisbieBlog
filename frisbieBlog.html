@@ -1,14 +1,34 @@
 <head>
-  <title>frisbieBlog</title>
+  <title>FrisbieBlog</title>
 </head>
 
 <body>
-  <h1>Welcome to Meteor!</h1>
+  <h1>Blog</h1>
 
-  {{> hello}}
+  {{> posts}}
 </body>
 
-<template name="hello">
-  <button>Click Me</button>
-  <p>You've pressed the button {{counter}} times.</p>
+<template name="createPost">
+  <form>
+    Create a post:<br/>
+    <input type="text" placeholder="Title" name="postTitle"><br/>
+    <input type="text" placeholder="Content" name = "postBody"><br/>
+    <input type="submit" value="submit">
+  </form>
+</template>
+
+<template name="posts">
+  {{> createPost}}
+  <ul>
+    {{#each post}}
+      {{> postItem}}
+    {{/each}}
+  </ul>
+</template>
+
+<template name="postItem">
+  <li>
+    {{title}} <br/>
+    created on: {{createdOn}}
+  </li>
 </template>

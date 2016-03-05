@@ -1,19 +1,25 @@
 if (Meteor.isClient) {
-  // counter starts at 0
-  Session.setDefault('counter', 0);
+  Template.posts.helpers({
+    'post': function () {
+      return Posts.find({}, {sort: {createdOn: -1}});
+    }
+  })
 
-  Template.hello.helpers({
-    counter: function () {
-      return Session.get('counter');
+  Template.createPost.events({
+    'submit form': function (event) {
+      event.preventDefault();
+      var postTitle = $('[name="postTitle"]').val();
+      var postBody = $('[name = "postBody"]').val();
+      Posts.insert({
+        title: postTitle,
+        postBody: postBody,
+        createdOn: new Date()
+      });
     }
   });
-
-  Template.hello.events({
-    'click button': function () {
-      // increment the counter when button is clicked
-      Session.set('counter', Session.get('counter') + 1);
-    }
-  });
+  // reset field values
+  $('[name="postTitle"]').val('');
+  $('[name="postBody"]').val('');
 }
 
 if (Meteor.isServer) {
