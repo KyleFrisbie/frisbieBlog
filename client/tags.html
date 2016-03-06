@@ -1,5 +1,18 @@
+<template name="tags">
+    {{> addTag}}
+    <ul>
+        {{#each tag}}
+        <li>
+          {{name}}
+          [<a href="#" class="delete-tag">Delete</a>]
+        </li>
+        {{/each}}
+    </ul>
+</template>
+
 <template name="addTag">
     <form>Create a tag:
         <input type="text" placeholder="Add a tag" name="tagName">
+        <input type="submit" value="submit">
     </form>
 </template>

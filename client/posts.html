@@ -3,6 +3,13 @@
         Create a post:<br/>
         <input type="text" placeholder="Title" name="postTitle"><br/>
         <input type="text" placeholder="Content" name = "postBody"><br/>
+        <ul>
+          {{#each tag}}
+            <li>
+              <input type="checkbox" name="tag" value="{{name}}">{{name}}
+            </li>
+          {{/each}}
+        </ul>
         <input type="submit" value="submit">
     </form>
 </template>
@@ -21,6 +28,7 @@
         {{title}} <br/>
         {{createdOn}}<br/>
         {{postBody}}<br/>
+        <p>Tags: {{tags}}</p>
         [<a href="#" class="delete-post">Delete</a>]
     </li>
 </template>

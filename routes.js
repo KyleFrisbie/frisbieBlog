@@ -7,3 +7,5 @@ Router.route('/', function () {
 });
 
 Router.route('/posts');
+
+Router.route('/tags');
